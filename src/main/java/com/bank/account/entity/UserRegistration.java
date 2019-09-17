@@ -1,6 +1,6 @@
 package com.bank.account.entity;
 
-import java.io.Serializable;
+import java.util.Collection;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -8,16 +8,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.sun.istack.NotNull;
 
 @Entity
 @Table(name = "USER_REGISTRATION")
-public class UserRegistration implements Serializable {
-	
-    private static final long serialVersionUID = 1L;
+public class UserRegistration {
+private static final long serialVersionUID = 1L;
     
     @Id
     @Basic(optional = false)
@@ -45,6 +47,9 @@ public class UserRegistration implements Serializable {
     @Size(max = 255)
     @Column(name = "login_name")
     private String loginName;
+
+    @OneToMany(mappedBy = "userRegistrationId")
+    private Collection<BankAccount> bankAccountId;
 
 	public Long getId() {
 		return id;
@@ -93,11 +98,6 @@ public class UserRegistration implements Serializable {
 	public void setLoginName(String loginName) {
 		this.loginName = loginName;
 	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-    
 
 
 }

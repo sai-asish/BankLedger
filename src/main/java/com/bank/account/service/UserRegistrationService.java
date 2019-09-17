@@ -5,13 +5,13 @@ import org.springframework.stereotype.Service;
 
 import com.bank.account.entity.UserRegistration;
 import com.bank.account.model.UserModel;
-import com.bank.account.repository.UserRegistationRepo;
+import com.bank.account.repository.UserRegistrationRepo;
 
 @Service
 public class UserRegistrationService {
 	
 	@Autowired
-	UserRegistationRepo userRegistrationRepo;
+	UserRegistrationRepo userRegistrationRepo;
 	
 	public String createUser(UserModel userModel) {
 		
@@ -30,12 +30,14 @@ public class UserRegistrationService {
 		return status;
 	}
 	
+	
+	
 	public UserRegistration getUserDetail(String userId) {
-		UserRegistration userRegistration = userRegistrationRepo.findByLoginName(userId);
 		
-		return userRegistration;
+		return userRegistrationRepo.findByLoginName(userId);
+		
 	}
 	
 	
-	
+
 }

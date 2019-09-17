@@ -22,7 +22,6 @@ public class UserController {
 
 	@RequestMapping(value="/registration", method=RequestMethod.POST)
 	public ResponseEntity<String> userRegistration(@RequestBody UserModel userModel ) {
-		userModel.setFirstName("sai");
 		
 		String status = userRegistrationService.createUser(userModel);
 		
@@ -30,13 +29,14 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/detail/{userId}", method=RequestMethod.GET)
-	public ResponseEntity<UserRegistration> getUserDetail(@PathVariable String userId ) {
+	public ResponseEntity<UserRegistration> getUserDetail(@PathVariable String userId) {
 		
 		UserRegistration userRegistration = userRegistrationService.getUserDetail(userId);
-		//System.out.println(userModel.getLoginName());
 		
 		return new ResponseEntity<UserRegistration>(userRegistration, HttpStatus.OK);
 	}
 	
-
+	
 }
+
+
